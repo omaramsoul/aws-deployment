@@ -9,18 +9,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p "${{ secrets.DOCKER_PASSWORD }}"
-      - run: docker build -t cygnetops/aws-deployment -f ./client/Dockerfile.dev ./client
-      - run: docker run -e CI=true cygnetops/aws-deployment npm test
+      - run: docker build -t omaramsoul/aws-deployment -f ./client/Dockerfile.dev ./client
+      - run: docker run -e CI=true omaramsoul/aws-deployment npm test
       # build our images
-      - run: docker build -t cygnetops/multi-client-10-14 ./client
-      - run: docker build -t cygnetops/multi-nginx-10-14 ./nginx
-      - run: docker build -t cygnetops/multi-server-10-14 ./server
-      - run: docker build -t cygnetops/multi-worker-10-14 ./worker
+      - run: docker build -t omaramsoul/multi-client-10-14 ./client
+      - run: docker build -t omaramsoul/multi-nginx-10-14 ./nginx
+      - run: docker build -t omaramsoul/multi-server-10-14 ./server
+      - run: docker build -t omaramsoul/multi-worker-10-14 ./worker
       # push those images to docker hub
-      - run: docker push cygnetops/multi-client-10-14
-      - run: docker push cygnetops/multi-nginx-10-14
-      - run: docker push cygnetops/multi-server-10-14
-      - run: docker push cygnetops/multi-worker-10-14
+      - run: docker push omaramsoul/multi-client-10-14
+      - run: docker push omaramsoul/multi-nginx-10-14
+      - run: docker push omaramsoul/multi-server-10-14
+      - run: docker push omaramsoul/multi-worker-10-14
 
       # - name: Generate deployment package
       #   run: zip -r deploy.zip . -x '*.git*'
